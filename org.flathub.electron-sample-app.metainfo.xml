@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>org.flathub.electron-sample-app</id>
+  <name>Electron Sample App</name>
+  <summary>Sample Electron application for the Flatpak tutorial</summary>
+  <description>
+    <p>A basic Electron application used in the official Flatpak tutorial.</p>
+    <p>It demonstrates a minimal desktop app built with Electron and packaged for Flatpak.</p>
+  </description>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <developer_name>Flathub</developer_name>
+  <launchable type="desktop-id">org.flathub.electron-sample-app.desktop</launchable>
+  <url type="homepage">https://github.com/flathub/electron-sample-app</url>
+  <url type="bugtracker">https://github.com/flathub/electron-sample-app/issues</url>
+  <url type="vcs-browser">https://github.com/flathub/electron-sample-app</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Electron Sample App main window</caption>
+      <image>https://raw.githubusercontent.com/flathub/electron-sample-app/master/images/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="1.0.3" date="2026-02-04">
+      <description>
+        <p>Update for the 25.08 runtime.</p>
+      </description>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1"/>
+</component>

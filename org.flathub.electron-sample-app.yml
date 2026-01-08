@@ -1,20 +1,22 @@
 app-id: org.flathub.electron-sample-app
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 base: org.electronjs.Electron2.BaseApp
-base-version: '23.08'
+base-version: '25.08'
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.node18
+  - org.freedesktop.Sdk.Extension.node24
 command: run.sh
 separate-locales: false
 finish-args:
   - --share=ipc
-  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
   - --socket=pulseaudio
   - --share=network
+  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
 build-options:
-  append-path: /usr/lib/sdk/node18/bin
+  append-path: /usr/lib/sdk/node24/bin
   env:
     NPM_CONFIG_LOGLEVEL: info
 modules:
@@ -37,11 +39,40 @@ modules:
       - cp -a dist/linux*unpacked /app/main
       # Install app wrapper
       - install -Dm755 -t /app/bin/ ../run.sh
+      # Install AppStream metadata
+      - install -Dm644 org.flathub.electron-sample-app.metainfo.xml /app/share/metainfo/org.flathub.electron-sample-app.metainfo.xml
+      # Install desktop file and icon
+      - install -Dm644 org.flathub.electron-sample-app.desktop /app/share/applications/org.flathub.electron-sample-app.desktop
+      - install -Dm644 images/logo.svg /app/share/icons/hicolor/scalable/apps/org.flathub.electron-sample-app.svg
     subdir: main
     sources:
-      - type: archive
-        url: https://github.com/flathub/org.flathub.electron-sample-app/archive/refs/tags/1.0.2.tar.gz
-        sha256: 68f8c277234198a17adddc05147b1a919b233e1fa31d7427be0ceb45e6cf0a26
+      #- type: archive
+      #  url: https://github.com/flathub/org.flathub.electron-sample-app/archive/refs/tags/1.0.2.tar.gz
+      #  sha256: 68f8c277234198a17adddc05147b1a919b233e1fa31d7427be0ceb45e6cf0a26
+      #  dest: main
+      - type: file
+        path: css/styles.css
+        dest: main/css
+      - type: file
+        path: images/logo.svg
+        dest: main/images
+      - type: file
+        path: package.json
+        dest: main
+      - type: file
+        path: package-lock.json
+        dest: main
+      - type: file
+        path: index.html
+        dest: main
+      - type: file
+        path: main.js
+        dest: main
+      - type: file
+        path: org.flathub.electron-sample-app.desktop
+        dest: main
+      - type: file
+        path: org.flathub.electron-sample-app.metainfo.xml
         dest: main
       - flatpak/generated-sources.json
       # Wrapper to launch the app

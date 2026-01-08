@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Electron Sample App
+Comment=Sample Electron application for the Flatpak tutorial
+Exec=run.sh
+Icon=org.flathub.electron-sample-app
+Terminal=false
+Categories=Utility;
