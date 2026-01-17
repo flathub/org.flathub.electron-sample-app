@@ -45,7 +45,7 @@ modules:
       - type: dir
         path: ..
         dest: main
-      - generated-sources.json
+      - flatpak/generated-sources.json
       # Wrapper to launch the app
       - type: script
         dest-filename: run.sh
